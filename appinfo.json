@@ -27,10 +27,12 @@
     "sdkVersion": "3",
     "shortName": "SwissTP",
     "targetPlatforms": [
-        "basalt"
+        "aplite",
+        "basalt",
+        "chalk"
     ],
     "uuid": "008bcaa4-0609-4d05-b59d-a23a38f3f239",
-    "versionLabel": "1.1",
+    "versionLabel": "1.2",
     "watchapp": {
         "watchface": false
     }

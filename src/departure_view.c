@@ -6,7 +6,7 @@ static Window *s_main_window;
 //static TextLayer *s_first_element;
 static MenuLayer *s_menu_layer;
 static char *departureList;
-static char destination[MAX_DEPARTURE_COUNT][16];
+static char destination[MAX_DEPARTURE_COUNT][32];
 static char line[MAX_DEPARTURE_COUNT][5];
 static char passingtime[MAX_DEPARTURE_COUNT][6];
 

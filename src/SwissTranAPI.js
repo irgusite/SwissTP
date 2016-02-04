@@ -55,8 +55,8 @@ function getNextDepartures(id){
 function locationSuccess(pos) {
   var station = '';
   var id = '';
-  //var url = 'http://transport.opendata.ch/v1/locations?x=46.202988&y=6.174194&type=station';
-  var url = 'http://transport.opendata.ch/v1/locations?x=' + pos.coords.latitude + '&y='+ pos.coords.longitude +'&type=station';
+  var url = 'http://transport.opendata.ch/v1/locations?x=46.202988&y=6.174194&type=station';//used for the emulator
+  //var url = 'http://transport.opendata.ch/v1/locations?x=' + pos.coords.latitude + '&y='+ pos.coords.longitude +'&type=station';
   console.log('url: '+ url);
   xhrRequest(url, 'GET', 
     function(responseText) {
