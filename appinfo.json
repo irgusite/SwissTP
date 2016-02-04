@@ -1,0 +1,37 @@
+{
+    "appKeys": {
+        "KEY_DEPARTURES": 1,
+        "KEY_IDS": 2,
+        "KEY_SEND_ID": 3,
+        "KEY_STATIONS": 0
+    },
+    "capabilities": [
+        "location"
+    ],
+    "companyName": "irgusite@gmail.com",
+    "enableMultiJS": false,
+    "longName": "Swiss Transport",
+    "projectType": "native",
+    "resources": {
+        "media": [
+            {
+                "file": "images/ST.png",
+                "menuIcon": true,
+                "name": "IMAGE_HOME_SCREEN",
+                "storageFormat": "png",
+                "targetPlatforms": null,
+                "type": "bitmap"
+            }
+        ]
+    },
+    "sdkVersion": "3",
+    "shortName": "SwissTP",
+    "targetPlatforms": [
+        "basalt"
+    ],
+    "uuid": "008bcaa4-0609-4d05-b59d-a23a38f3f239",
+    "versionLabel": "1.1",
+    "watchapp": {
+        "watchface": false
+    }
+}
