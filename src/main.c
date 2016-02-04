@@ -8,7 +8,7 @@
 #define KEY_SEND_ID 3
 
 static Window *s_main_window;
-static TextLayer *s_first_element;
+//static TextLayer *s_first_element;
 static MenuLayer *s_menu_layer;
 static char menubuffer[10][32];
 static int s_menu_size;
@@ -72,7 +72,7 @@ static void main_window_load(Window *window){
   //first line
   text_layer_set_background_color(s_first_element, GColorBlack);
   text_layer_set_text_color(s_first_element, GColorWhite);
-  text_layer_set_text(s_first_element, "Menu");
+  text_layer_set_text(s_first_element, "00:00");
   text_layer_set_font(s_first_element, fonts_get_system_font(FONT_KEY_GOTHIC_14_BOLD));
   text_layer_set_text_alignment(s_first_element, GTextAlignmentCenter);
 
@@ -149,8 +149,25 @@ static void outbox_sent_callback(DictionaryIterator *iterator, void *context) {
   APP_LOG(APP_LOG_LEVEL_INFO, "Outbox send success!");
 }
 
+static void update_time(){
+  //get a tm structure
+  time_t temp = time(NULL);
+  struct tm *tick_time = localtime(&temp);
+  
+  static char s_buffer[8];
+  strftime(s_buffer, sizeof(s_buffer), clock_is_24h_style()? "%H:%M" : "%I:%M", tick_time);
+  
+  text_layer_set_text(s_first_element, s_buffer);
+}
+
+static void tick_handler(struct tm *tick_time, TimeUnits units_changed){
+  update_time();
+}
+
 void handle_init(void) {
   s_main_window = window_create();
+  
+  s_first_element = text_layer_create(GRect(0, 0, 144, 20));
   
   window_set_window_handlers(s_main_window, (WindowHandlers) {
     .load = main_window_load,
@@ -164,12 +181,14 @@ void handle_init(void) {
   app_message_register_outbox_sent(outbox_sent_callback);
   
   // Open AppMessage
-  app_message_open(app_message_inbox_size_maximum(), app_message_outbox_size_maximum());
-
+  app_message_open(500, 500);
   
-  //window_set_click_config_provider(s_main_window, click_config_provider);
+  //get the time to display from the start
+  update_time();
+  
+  //register to tickTimerService
+  tick_timer_service_subscribe(MINUTE_UNIT, tick_handler);
 
-  s_first_element = text_layer_create(GRect(0, 0, 144, 20));
   window_stack_push(s_main_window, true);
 }
 

@@ -2,6 +2,8 @@
 #include <pebble.h>
 #define CHECKBOX_WINDOW_CELL_HEIGHT_DEP 44
 
+static TextLayer *s_first_element;
+
 //static void window_load(Window *window);
 //static void window_unload(Window *window);
 //static void generate_list(void);
